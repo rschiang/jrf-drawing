@@ -91,7 +91,7 @@
                 <div class="form-group">
                     <label for="select">要選出幾個</label>
                     <input type="number" name="select" id="select" class="form-control" value="" min="" max="100" step="" required="required" title="">
-                    <span id="select-invalid" class="help-block hidden"></span>
+                    <span id="select-invalid" class="help-block hidden">請輸入有效的數字</span>
                 </div>
             </div>
             <div class="row">
@@ -198,15 +198,10 @@
         });
         $('#select').bind('keyup change', function() {
             var text = $(this).val();
+            var valid = Number(text) > 0;
             $('#random').prop('disabled', !text);
-
-            var select = Number(text);
-            var max = Number($('#max').val());
-            var valid = (select > 0) && (select <= max);
             $(this).parent().toggleClass('has-error', !valid);
             $('#select-invalid').toggleClass('hidden', valid);
-            if (!valid)
-                $('#select-invalid').text((select > 0) ? '請輸入介於 1 到最大的數字之間的數字' : '請輸入有效的數字');
         });
     });
     </script>
