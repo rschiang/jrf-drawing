@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="zh-Hant">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Title Page</title>
+    <title>雨蒼抽抽籤</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -18,18 +18,28 @@
     <![endif]-->
     <style type="text/css">
       .ball {
-        background-color: #aaa;
+        background-color: #009688;
         border-radius: 50%;
+        color: #fff;
         display: inline-block;
         height: 30px;
         width: 30px;
         line-height: 30px;
         text-align: center;
       }
+
+      #selected .ball {
+        background: #2196F3;
+      }
+
+      #excluded .ball {
+        background: #bdbdbd;
+        color: #757575;
+      }
     </style>
   </head>
   <body>
-    <h1 class="text-center">Hello World</h1>
+    <h1 class="text-center">雨蒼抽抽籤</h1>
     <div class="container">
       <form>
         <div class="row">
@@ -54,17 +64,17 @@
           <button type="button" class="btn btn-default" id="generate">產生所有的數字</button>
           <button type="button" class="btn btn-default" id="random">抽出指定的數字</button>
         </div>
-        
+
       </form>
       <div class="row">
         <div id="all">
-          
+
         </div>
         <div id="selected">
-          
+
         </div>
         <div id="excluded">
-          
+
         </div>
       </div>
     </div>
