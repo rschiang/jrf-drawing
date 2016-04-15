@@ -22,10 +22,11 @@
         border-radius: 50%;
         color: #fff;
         display: inline-block;
-        height: 30px;
-        width: 30px;
-        line-height: 30px;
+        height: 2.15em;
+        width: 2.15em;
+        line-height: 2.15em;
         text-align: center;
+        margin: 1px;
     }
 
     #selected .ball {
@@ -36,6 +37,19 @@
         background: #bdbdbd;
         color: #757575;
     }
+
+    #all:not(:empty):before,
+    #selected:not(:empty):before,
+    #excluded:not(:empty):before {
+        border-bottom: 1px solid #bdbdbd;
+        display: block;
+        margin: 1.5em 0 .5em;
+        padding: .25em 0;
+    }
+
+    #all:not(:empty):before { content: '所有的球球'; }
+    #selected:not(:empty):before { content: '抽中的球球'; }
+    #excluded:not(:empty):before { content: '候補的球球'; }
     </style>
 </head>
 <body>
