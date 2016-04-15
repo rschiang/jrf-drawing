@@ -17,8 +17,23 @@
     <![endif]-->
 
     <style type="text/css">
+    @keyframes ball-appear {
+        0% { transform: scale3d(1, 1, 1); opacity: .8; }
+        30% { transform: scale3d(1.25, 0.75, 1); }
+        40% { transform: scale3d(0.75, 1.25, 1); opacity: 1; }
+        50% { transform: scale3d(1.15, 0.85, 1); }
+        65% { transform: scale3d(.95, 1.05, 1); }
+        75% { transform: scale3d(1.05, .95, 1); }
+        100% { transform: scale3d(1, 1, 1); }
+    }
+
+    @keyframes ball-fade {
+        from { color: rgba(117, 117, 117, .6); }
+        to { color: rgba(117, 117, 117, 1); }
+    }
+
     .ball {
-        background-color: #009688;
+        background-color: #757575;
         border-radius: 50%;
         color: #fff;
         display: inline-block;
@@ -27,15 +42,17 @@
         line-height: 2.15em;
         text-align: center;
         margin: 1px;
+        animation: .6s ease ball-appear;
     }
 
     #selected .ball {
-        background: #2196F3;
+        background: #2196f3;
     }
 
     #excluded .ball {
         background: #bdbdbd;
         color: #757575;
+        animation: .3s ease-in ball-fade;
     }
 
     #all:not(:empty):before,
@@ -43,6 +60,7 @@
     #excluded:not(:empty):before {
         border-bottom: 1px solid #bdbdbd;
         display: block;
+        font-weight: 500;
         margin: 1.5em 0 .5em;
         padding: .25em 0;
     }
