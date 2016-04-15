@@ -77,7 +77,8 @@
             <div class="row">
                 <div class="form-group">
                     <label for="max">最大的數字</label>
-                    <input type="number" name="max" id="max" class="form-control" value="" min="" max="100" step="" required="required" title="">
+                    <input type="number" name="max" id="max" class="form-control" value="" min="0" max="100" step="" required="required" title="">
+                    <span id="max-invalid" class="help-block hidden">請輸入有效的數字，例如「100」</span>
                 </div>
             </div>
             <div class="row">
@@ -94,7 +95,7 @@
             </div>
             <div class="row">
                 <button type="button" class="btn btn-default" id="generate">產生所有的數字</button>
-                <button type="button" class="btn btn-default" id="random">抽出指定的數字</button>
+                <button type="button" class="btn btn-default" id="random" disabled>抽出指定的數字</button>
             </div>
 
         </form>
@@ -139,10 +140,10 @@
         excluded = [];
         generate = function() {
             //console.log('generate');
-            var max = $('#max')[0].value;
-            var exclude = $('#exclude')[0].value;
+            var max = Number($('#max').val());
+            var exclude = $('#exclude').val();
             all = [];
-            if ( max !== undefined && max > 0) {
+            if (max > 0) {
                 for (var i = 1; i <= max; i++) {
                     all.push(i.toString());
                 }
@@ -163,7 +164,7 @@
 
         random = function() {
             //console.log('random');
-            var select_num = $('#select')[0].value;
+            var select_num = $('#select').val();
             var shuffled_all = shuffle(all);
             if ( select_num !== undefined && select_num > 0) {
                 selected = [];
@@ -189,6 +190,14 @@
         }
         $('#generate').click(generate);
         $('#random').click(random);
+        $('#max').bind('keyup change', function() {
+            var valid = Number($(this).val()) > 0;
+            $(this).parent().toggleClass('has-error', !valid);
+            $('#max-invalid').toggleClass('hidden', valid);
+        });
+        $('#select').bind('keyup change', function() {
+            $('#random').prop('disabled', !!($(this).text()));
+        });
     });
     </script>
 </body>
