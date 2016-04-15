@@ -156,6 +156,11 @@
                 $('#all').append('<div class="ball" id="' + v + '">' + v + '</div>');
             });
         };
+
+        numericSort = function(a, b) {
+            return a - b;
+        }
+
         random = function() {
             //console.log('random');
             var select_num = $('#select')[0].value;
@@ -170,8 +175,8 @@
                         excluded.push(v);
                     }
                 });
-                selected.sort();
-                excluded.sort();
+                selected.sort(numericSort);
+                excluded.sort(numericSort);
             }
             $('#selected').empty();
             $.each(selected, function(i, v){
