@@ -85,6 +85,7 @@
                 <div class="form-group">
                     <label for="exclude">除外的數字，請以「、」分隔</label>
                     <input type="text" name="exclude" id="exclude" class="form-control">
+                    <span id="exclude-invalid" class="help-block hidden">請輸入有效的數字與「、」</span>
                 </div>
             </div>
             <div class="row">
@@ -195,6 +196,11 @@
             var valid = Number($(this).val()) > 0;
             $(this).parent().toggleClass('has-error', !valid);
             $('#max-invalid').toggleClass('hidden', valid);
+        });
+        $('#exclude').bind('keyup change', function() {
+            var valid = /^[0-9、]*$/.test($(this).val());
+            $(this).parent().toggleClass('has-error', !valid);
+            $('#exclude-invalid').toggleClass('hidden', valid);
         });
         $('#select').bind('keyup change', function() {
             var text = $(this).val();
