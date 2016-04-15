@@ -91,6 +91,7 @@
                 <div class="form-group">
                     <label for="select">要選出幾個</label>
                     <input type="number" name="select" id="select" class="form-control" value="" min="" max="100" step="" required="required" title="">
+                    <span id="select-invalid" class="help-block hidden"></span>
                 </div>
             </div>
             <div class="row">
@@ -164,9 +165,9 @@
 
         random = function() {
             //console.log('random');
-            var select_num = $('#select').val();
+            var select_num = Number($('#select').val());
             var shuffled_all = shuffle(all);
-            if ( select_num !== undefined && select_num > 0) {
+            if (select_num > 0) {
                 selected = [];
                 excluded = [];
                 $.each(shuffled_all, function(i, v){
@@ -196,7 +197,16 @@
             $('#max-invalid').toggleClass('hidden', valid);
         });
         $('#select').bind('keyup change', function() {
-            $('#random').prop('disabled', !!($(this).text()));
+            var text = $(this).val();
+            $('#random').prop('disabled', !text);
+
+            var select = Number(text);
+            var max = Number($('#max').val());
+            var valid = (select > 0) && (select <= max);
+            $(this).parent().toggleClass('has-error', !valid);
+            $('#select-invalid').toggleClass('hidden', valid);
+            if (!valid)
+                $('#select-invalid').text((select > 0) ? '請輸入介於 1 到最大的數字之間的數字' : '請輸入有效的數字');
         });
     });
     </script>
